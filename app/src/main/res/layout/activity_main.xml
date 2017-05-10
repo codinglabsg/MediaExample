@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mediaexample.MainActivity">
+
+
+
+    <TableLayout
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+
+        <TableRow>
+
+            <TextView
+                android:layout_margin="2sp"
+
+                android:padding="6sp"
+                android:text="Take Picture"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_margin="2sp"
+
+                android:padding="6sp"
+                android:text="Show Address"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </TableRow>
+
+
+
+        <!-- ???? -->
+        <ImageView
+            android:id="@+id/picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:background="@drawable/rectangle_drawable"
+            android:padding="6sp"
+            android:visibility="invisible" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
+
+            <TableRow>
+
+                <ImageButton
+                    android:id="@+id/take_picture"
+                    android:onClick="clickFunction"
+                    android:src="@drawable/take_picture_icon" />
+
+
+
+                <ImageButton
+                    android:id="@+id/set_location"
+                    android:onClick="clickFunction"
+                    android:src="@drawable/location_icon" />
+
+
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/accelerometer"
+                    android:layout_margin="2sp"
+                    android:onClick="clickFunction"
+                    android:padding="6sp"
+                    android:text="Try Accelerometer"
+                    android:background="@drawable/rectangle_drawable"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:id="@+id/ok_teim"
+                    android:layout_margin="2sp"
+                    android:onClick="clickFunction"
+                    android:padding="6sp"
+                    android:text="@android:string/ok"
+                    android:background="@drawable/button_drawable"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
+
+            <TableRow>
+
+               <ImageView
+                   android:id="@+id/camera_result"
+                   android:layout_height="wrap_content"
+                   android:layout_width="wrap_content"
+                   />
+            </TableRow>
+        </TableLayout>
+
+    </TableLayout>
+
+</android.support.constraint.ConstraintLayout>
