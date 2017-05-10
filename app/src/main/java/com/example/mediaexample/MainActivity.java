@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final DateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
     private static final String app_dir = "example";
-
+    private File pictureFile;
+    private Uri uri;
 
 
     @Override
@@ -41,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-                File pictureFile = configFileName("P", ".jpg");
-                Uri uri = Uri.fromFile(pictureFile);
+                 pictureFile = configFileName("P", ".jpg");
+                 uri = Uri.fromFile(pictureFile);
                 intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, uri);
 
                 if (ActivityCompat.checkSelfPermission(this,
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                                 PackageManager.PERMISSION_GRANTED) {
 
                     Log.d("Camera Permission******", "Denied");
-                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
+                    //requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
                     return;
                 }
                 startActivityForResult(intentCamera, 1);
@@ -109,11 +110,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == 1 && resultCode == RESULT_OK) {
-           /* ImageView imageView = (ImageView)findViewById(R.id.camera_result);
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            System.out.println(imageBitmap);
-            imageView.setImageBitmap(imageBitmap); */
+            ImageView imageView = (ImageView)findViewById(R.id.camera_result);
+
+            if (ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) !=
+                            PackageManager.PERMISSION_GRANTED) {
+
+                Log.d("photo read******", "external storage access Denied");
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                return;
+            }
+
+            imageView.setImageURI(uri);
             Toast.makeText(this, "photo is taken successfully", Toast.LENGTH_LONG).show();
        }
     }
